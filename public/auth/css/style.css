@@ -1,0 +1,123 @@
+.container{
+    width: 966px;
+    margin: 0 auto;
+}
+.title{
+    text-align: center;
+    margin: 25px 0;
+}
+.title h1{
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    line-height: normal;
+}
+
+.list{
+    background-color: white;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    margin: 30px 0px;
+}
+.list thead tr{
+    background-color: #1a202c;
+    color: white;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    text-align: left;
+    font-size: 1rem;
+
+    vertical-align: bottom;
+}
+.list th, .list td{
+    padding: 15px 10px;
+}
+
+.list tbody tr{
+    border-bottom: 1px solid #1a202c;
+}
+
+.list tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.list tbody tr:last-of-type {
+    border-bottom: 2px solid #81baec;
+}
+
+.list tbody tr.active-row {
+    font-weight: bold;
+}
+
+.list .action {
+    display: flex;
+}
+
+
+.btn{
+    margin: 0 5px;
+
+}
+
+
+.options{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+
+}
+.options .btn{
+    margin-top: 5px;
+}
+
+/*CREATE FILE*/
+
+.title h2{
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.form form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+.form form fieldset{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 10px;
+}
+.form form div{
+    display: flex;
+    flex-direction: row;
+}
+.form form div fieldset{
+    flex: 1;
+}
+
+.form form input, .form form select{
+    height: 36px;
+    margin-top: 5px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.form form div#primarykey{
+    background-color: #e2e8f0;
+    border-radius: 18px;
+    height: 36px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+}
+
+.error{
+    box-sizing: border-box;
+    border: #ff626c 2px solid;
+}
