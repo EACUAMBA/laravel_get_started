@@ -30,8 +30,15 @@ class PersonRepository
         return Person::create($person);
     }
 
-    public function delete($person)
+    public function delete(Person $person)
     {
-        $person->delete();
+
+        try {
+
+            $person->delete();
+            $person->user()->delete();
+        } catch (\Exception $e) {
+
+        }
     }
 }

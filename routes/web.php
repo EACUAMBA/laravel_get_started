@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,11 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth')->group(function (){
-    Route::get('/pessoa', [PersonController::class, 'index'])->name('person.index');
-
+Route::middleware('person.exits')->group(function (){
     Route::get('/pessoa/nova', [PersonController::class, 'create'])->name('person.create');
-    Route::post('pessoa/salvar', [PersonController::class, 'store'])->name('person.store');
+    Route::post('/pessoa/salvar', [PersonController::class, 'store'])->name('person.store');
+});
+
+
+Route::get('/pessoa', [PersonController::class, 'index'])->name('person.index');
+
+Route::middleware('auth')->group(function (){
 
     Route::get('pessoa/{person}/editar', [PersonController::class, 'edit'])->name('person.edit');
     Route::put('/pessoa/{person}', [PersonController::class, 'update'])->name('person.update');
@@ -30,5 +35,12 @@ Route::middleware('auth')->group(function (){
     Route::delete('/pessoa/{person}', [PersonController::class, 'destroy'])->name('person.destroy');
 });
 
+
+Route::get('/permissao', [PermissionController::class, 'index'])->name('permission.index');
+
+Route::get('/permissao/nova', [PermissionController::class, 'create'])->name('permission.create');
+Route::post('/permissao/salvar', [PermissionController::class, 'store'])->name('permission.store');
+
+Route::get('/permissao/nova', [PermissionController::class, 'create'])->name('permission.store');
 
 require __DIR__ . '/auth.php';

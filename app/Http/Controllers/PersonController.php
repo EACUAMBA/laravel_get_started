@@ -4,20 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PersonRequest;
 use App\Models\Person;
+use App\Services\PermissionService;
 use App\Services\PersonService;
 use Illuminate\Support\Facades\Auth;
 
 class PersonController extends Controller
 {
     protected $personService;
+    protected $permissionService;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(PersonService $personService)
+    public function __construct(PersonService $personService, PermissionService $permissionService)
     {
         $this->personService = $personService;
+        $this->permissionService = $permissionService;
     }
 
     public function index()
@@ -35,7 +38,16 @@ class PersonController extends Controller
      */
     public function create()
     {
-        return view('person.create');
+        $permissions = $this->permissionService->all();
+
+        if($permissions->count() <= 0){
+            return view('person.permission.create');
+        }else {
+            return view('person.create',
+            [
+                'permissions'=>$permissions
+            ]);
+        }
     }
 
     /**
@@ -46,6 +58,7 @@ class PersonController extends Controller
      */
     public function store(PersonRequest $personRequest)
     {
+
         $result = $this->personService->store($personRequest);
 
         return redirect(route('person.index'));
@@ -85,7 +98,7 @@ class PersonController extends Controller
      */
     public function update(PersonRequest $personRequest, Person $person)
     {
-
+        dd($personRequest);
         $savedPerson = $this->personService->update($personRequest->all(), $person);
         return redirect(route('person.index'));
     }

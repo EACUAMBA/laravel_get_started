@@ -31,7 +31,8 @@ class Person extends Model
         'state',
         'salary',
         'bi',
-        'user_id'
+        'user_id',
+        'permission_id'
     ]; //Atributos que podemos preencher. estamos a criar atributos para o modelo.
 
     protected $hidden =[
@@ -47,5 +48,8 @@ class Person extends Model
         return $this->belongsTo(User::class);
     }
 
-
+    public function permission()
+    {
+        $this->belongsTo(Permission::class, 'id', 'permission_id');
+    }
 }

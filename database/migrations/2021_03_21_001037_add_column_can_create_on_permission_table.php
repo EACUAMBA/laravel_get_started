@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUserIdColumnOnPessoaTable extends Migration
+class AddColumnCanCreateOnPermissionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AddUserIdColumnOnPessoaTable extends Migration
      */
     public function up()
     {
-        Schema::table('pessoa', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('user');
+        Schema::table('permission', function (Blueprint $table){
+            $table->after('name', function ($table){
+                $table->boolean('can_create');
+            });
+
         });
     }
 
@@ -26,8 +28,8 @@ class AddUserIdColumnOnPessoaTable extends Migration
      */
     public function down()
     {
-        Schema::table('pessoa', function (Blueprint $table){
-            $table->removeColumn('user_id');
+        Schema::table('permission', function (Blueprint $table){
+            $table->removeColumn('can_create');
         });
     }
 }

@@ -36,6 +36,7 @@ class PersonService
             $email = $personRequest->email;
             $password = Hash::make($personRequest->password);
             $name = $personRequest->name;
+            $permission_id = $personRequest->permission_id;
 
 
             $user = new User();
@@ -51,6 +52,7 @@ class PersonService
                 'state',
                 'salary',
                 'bi',
+                'permission_id'
             ]));
 
             Auth::login($user);
@@ -61,5 +63,6 @@ class PersonService
     public function delete($person)
     {
         $this->personRepository->delete($person);
+
     }
 }

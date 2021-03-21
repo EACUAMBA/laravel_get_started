@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,9 +20,9 @@ class AuthController extends Controller
         $credentials = $userRequest->only(['email', 'password']);
 
         if(Auth::attempt($credentials)){
-        $userRequest->session()->regenerate();
+        Auth::login(User::all()->where('email', '=', $credentials[0])->first());
 
-        return redirect()->intended();
+        return redirect()->intended('pessoa');
 
     }
 

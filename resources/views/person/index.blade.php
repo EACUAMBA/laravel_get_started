@@ -14,7 +14,7 @@
 <div class="container">
     <section class="title"><h1>Seja bem vindo a gestão de pessoas</h1></section>
     <a href="{{ route('auth.logout') }}" class="btn danger">Sair do sistema</a>
-    <span class=" btn" style="margin-top: 10px; font-weight: lighter">Entrou como <b style="font-weight: bold; margin-left: 10px;">{{ request()->user()->name }}</b> </span>
+    <span class=" btn" style="margin-top: 10px; font-weight: lighter">Entrou como <b style="font-weight: bold; margin-left: 10px;">{{ (empty(request()->user()->name) ? "Ninguem" : request()->user()->name) }}</b> </span>
     <table class="list">
         <thead>
         <tr>
@@ -28,25 +28,30 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($people as $person)
-            <tr>
-                <td>{{ $person->id }}</td>
-                <td>{{ $person->name }}</td>
-                <td>{{ $person->born_date }}</td>
-                <td>{{ $person->bi }}</td>
-                <td>{{ $person->salary }}</td>
-                <td>{{ $person->state == 1 ? "Activo" : "Desactivo" }}</td>
-                <td class="action">
-                    <a href="{{ route('person.edit', $person->id) }}" class="btn">Editar</a>
-                    <form action="{{ route('person.destroy', $person->id) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <button  type="submit" class="btn danger">Apagar</button>
-                    </form>
 
-                </td>
-            </tr>
-        @endforeach
+        @if(isset($people))
+
+            @foreach($people as $person)
+                <tr>
+                    <td>{{ $person->id }}</td>
+                    <td>{{ $person->name }}</td>
+                    <td>{{ $person->born_date }}</td>
+                    <td>{{ $person->bi }}</td>
+                    <td>{{ $person->salary }}</td>
+                    <td>{{ $person->state == 1 ? "Activo" : "Desactivo" }}</td>
+                    <td class="action">
+                        <a href="{{ route('person.edit', $person->id) }}" class="btn">Editar</a>
+                        <form action="{{ route('person.destroy', $person->id) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button  type="submit" class="btn danger">Apagar</button>
+                        </form>
+
+                    </td>
+                </tr>
+            @endforeach
+
+            @endif
         </tbody>
 
     </table>

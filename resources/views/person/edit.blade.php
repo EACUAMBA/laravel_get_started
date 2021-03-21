@@ -53,6 +53,8 @@
                 </fieldset>
             </div>
 
+
+            {{ $errors  }}
             <div class="options">
                 <input type="submit" class="btn" value="Salvar Alterações">
             </div>

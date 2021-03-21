@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Repositories\PersonRepository;
+use App\Services\PermissionService;
 use App\Services\PersonService;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,7 +20,10 @@ class ObjectServiceProvider extends ServiceProvider
             return new PersonService();
         });
         $this->app->singleton(PersonRepository::class, function ($app){
-            return new PersonRepository();
+        return new PersonRepository();
+    });
+        $this->app->singleton(PermissionService::class, function ($app){
+            return new PermissionService();
         });
     }
 

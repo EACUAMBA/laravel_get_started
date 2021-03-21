@@ -82,15 +82,32 @@
                 </fieldset>
             </div>
 
-            <fieldset class="email">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="@error('email') error @enderror"
-                       @if(empty(request()->old('email'))) placeholder="Email" @else value="{{request()->old('email')}}"
-                       @endif  }}>
-                @error('email')
-                <span style="font-size: 0.7rem; color: #ff626c">{{ $message }}</span>
-                @enderror
-            </fieldset>
+            <div>
+                <fieldset class="email">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="@error('email') error @enderror"
+                           @if(empty(request()->old('email'))) placeholder="Email"
+                           @else value="{{request()->old('email')}}"
+                           @endif  }}>
+                    @error('email')
+                    <span style="font-size: 0.7rem; color: #ff626c">{{ $message }}</span>
+                    @enderror
+                </fieldset>
+
+                <fieldset class="permission">
+                    <label for="permission">Email</label>
+                    <select name="permission_id" id="permission">
+                        <option value="" style="display: none">Selecione uma permissão</option>
+                        @foreach($permissions as $permission)
+                            <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+                        @endforeach
+                    </select>
+
+                    @error('permission')
+                    <span style="font-size: 0.7rem; color: #ff626c">{{ $message }}</span>
+                    @enderror
+                </fieldset>
+            </div>
 
 
             <div class="password">
@@ -101,7 +118,7 @@
                            @else value="{{request()->old('password')}}"
                            @endif  }}>
                     @error('password')
-                        <span style="font-size: 0.7rem; color: #ff626c">{{ $message }}</span>
+                    <span style="font-size: 0.7rem; color: #ff626c">{{ $message }}</span>
                     @enderror
                 </fieldset>
                 <fieldset class="password_confirm">
