@@ -41,6 +41,9 @@ Route::get('/permissao', [PermissionController::class, 'index'])->name('permissi
 Route::get('/permissao/nova', [PermissionController::class, 'create'])->name('permission.create');
 Route::post('/permissao/salvar', [PermissionController::class, 'store'])->name('permission.store');
 
-Route::get('/permissao/nova', [PermissionController::class, 'create'])->name('permission.store');
+Route::get('/permissao/{permission}/editar', [PermissionController::class, 'edit'])->name('permission.edit');
+Route::put('/permissao/{permission}/salvar', [PermissionController::class, 'update'])->name('permission.update');
+
+Route::put('/permissao/{permission}/apagado', [PermissionController::class, 'destroy'])->name('permission.destroy');
 
 require __DIR__ . '/auth.php';

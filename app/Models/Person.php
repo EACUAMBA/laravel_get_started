@@ -50,6 +50,6 @@ class Person extends Model
 
     public function permission()
     {
-        $this->belongsTo(Permission::class, 'id', 'permission_id');
+        return $this->belongsTo(Permission::class, 'id', 'permission_id');
     }
 }

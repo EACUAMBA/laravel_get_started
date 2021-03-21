@@ -10,7 +10,6 @@ use App\Models\User;
 use App\Repositories\PersonRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use function GuzzleHttp\Promise\all;
 
 class PersonService
 {
@@ -36,7 +35,6 @@ class PersonService
             $email = $personRequest->email;
             $password = Hash::make($personRequest->password);
             $name = $personRequest->name;
-            $permission_id = $personRequest->permission_id;
 
 
             $user = new User();
@@ -60,8 +58,9 @@ class PersonService
             return $user->person();
     }
 
-    public function delete($person)
+    public function delete(Person $person)
     {
+
         $this->personRepository->delete($person);
 
     }

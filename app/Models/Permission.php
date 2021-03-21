@@ -30,7 +30,7 @@ class Permission extends Model
     ];
 
     public function person(){
-        $this->hasMany(Person::class, 'permission_id', 'id');
+        return $this->hasMany(Person::class, 'permission_id', 'id');
     }
 
 }

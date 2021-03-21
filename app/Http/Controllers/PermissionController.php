@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PermissionRequest;
 use App\Models\Permission;
 use App\Services\PermissionService;
-use Cassandra\Date;
-use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
@@ -75,7 +73,11 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
-        //
+
+        return view('person.permission.edit', [
+            'permission' => $permission
+        ]);
+
     }
 
     /**
@@ -85,9 +87,10 @@ class PermissionController extends Controller
      * @param \App\Models\Permission $permission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permission $permission)
+    public function update(PermissionRequest $permissionRequest, Permission $permission)
     {
-        //
+        $permission = $this->permissionService->update($permissionRequest, $permission);
+        return response()->setContent($permission);
     }
 
     /**
@@ -98,6 +101,7 @@ class PermissionController extends Controller
      */
     public function destroy(Permission $permission)
     {
-        //
+        $message = $this->permissionService->destroy($permission);
+        return $message;
     }
 }
