@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PersonController;
+use App\Http\Controllers\PostCRUDController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,5 +46,15 @@ Route::get('/permissao/{permission}/editar', [PermissionController::class, 'edit
 Route::put('/permissao/{permission}/salvar', [PermissionController::class, 'update'])->name('permission.update');
 
 Route::put('/permissao/{permission}/apagado', [PermissionController::class, 'destroy'])->name('permission.destroy');
+
+
+/*
+ * CRUD image tutorial
+ */
+Route::resource('posts', PostCRUDController::class);
+
+/*
+ * CRUD image tutorial
+ */
 
 require __DIR__ . '/auth.php';

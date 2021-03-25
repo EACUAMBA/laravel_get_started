@@ -20,7 +20,7 @@ class AuthController extends Controller
         $credentials = $userRequest->only(['email', 'password']);
 
         if(Auth::attempt($credentials)){
-        Auth::login(User::all()->where('email', '=', $credentials[0])->first());
+            Auth::login(User::all()->where('email', '=', $credentials['email'])->first());
 
         return redirect()->intended('pessoa');
 
