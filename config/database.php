@@ -38,7 +38,7 @@ return [
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
-            'database' => env('DB_DATABASE', database_path('database.db')),
+            'database' => "C:/Users/Edilson A. Cuamba/Documents/dev-projects/laravel_get_started/database/laravel_get_started.db",//env('DB_DATABASE', database_path('database.db')),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
