@@ -123,4 +123,9 @@ class PostCRUDController extends Controller
         $post->delete();
         return redirect()->route('posts.index')->with('success', 'Post has been deleted');
     }
+
+    public function soma($valor)
+    {
+        return $valor + 20;
+    }
 }
